@@ -1,0 +1,8 @@
+# others
+variables.env
+
+# dependencies
+/node_modules
+
+# production
+/build

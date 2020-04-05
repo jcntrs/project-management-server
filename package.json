@@ -1,0 +1,17 @@
+{
+  "name": "project-management-server",
+  "version": "1.0.0",
+  "description": "MERN API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "author": "Jean C. Contreras",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.6"
+  }
+}
