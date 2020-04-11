@@ -10,6 +10,7 @@ app.use(express.json({ extended: true })); // Habilitar express.json | equivalen
 const PORT = process.env.PORT || 4000; // Puerto de la app
 
 app.use('/api/users', require('./routes/users'));
+app.use('/api/authentication', require('./routes/authentication'));
 
 app.get('/', (req, res) => {
     res.send('Hi World!');
