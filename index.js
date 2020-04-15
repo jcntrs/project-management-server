@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 4000; // Puerto de la app
 
 app.use('/api/users', require('./routes/users'));
 app.use('/api/authentication', require('./routes/authentication'));
+app.use('/api/projects', require('./routes/projects'));
 
 app.get('/', (req, res) => {
     res.send('Hi World!');
