@@ -43,7 +43,7 @@ exports.authenticateUser = async (req, res) => {
 
 exports.getAuthenticatedUser = async (req, res) => {
     try {
-        const user = await User.findById(req.user.userId);
+        const user = await User.findById(req.user.userId).select('-password');
         res.json({ user });
     } catch (error) {
         console.log(error)

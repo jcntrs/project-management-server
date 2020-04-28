@@ -4,16 +4,15 @@ const authenticationController = require('../controllers/authenticationControlle
 const authentication = require('../middlewares/authentication');
 const { check } = require('express-validator');
 
-router.post(
-    '/',
-    [
+router.post('/',
+    /* [
         check('email', 'Agrega un email válido').isEmail(),
         check('password', 'La contraseña debe tener minimo 6 caracteres').isLength({ min: 6 })
-    ],
+    ], */
     authenticationController.authenticateUser
 );
 
-router.get('/get',
+router.get('/',
     authentication,
     authenticationController.getAuthenticatedUser
 );
