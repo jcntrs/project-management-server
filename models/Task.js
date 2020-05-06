@@ -12,7 +12,7 @@ const TaskSchema = mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now()
+        required: true
     },
     project: {
         type: mongoose.Schema.Types.ObjectId,

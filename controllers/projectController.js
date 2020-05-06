@@ -1,5 +1,6 @@
 const Project = require('../models/Proyect');
 const { validationResult } = require('express-validator');
+const moment = require('moment');
 
 exports.createProject = async (req, res) => {
 
@@ -12,6 +13,9 @@ exports.createProject = async (req, res) => {
     try {
         const newProject = new Project(req.body);
         newProject.creator = req.user.userId;
+        newProject.createdAt = Date.now();
+        newProject.createdAtMoment = moment(Date.now()).format('YYYY-MM-DD h:mm:ss a');
+        newProject.createdAtMilliseconds = moment().valueOf();
         newProject.save();
         res.json(newProject);
     } catch (error) {

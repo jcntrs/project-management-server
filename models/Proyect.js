@@ -12,7 +12,15 @@ const ProjectSchema = mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now()
+        required: true
+    },
+    createdAtMoment: {
+        type: String,
+        required: true
+    },
+    createdAtMilliseconds: {
+        type: Number,
+        required: true
     }
 });
 

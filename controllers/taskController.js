@@ -20,6 +20,7 @@ exports.createTask = async (req, res) => {
             return res.status(401).json({ msg: 'No autorizado' });
 
         const newTask = new Task(req.body);
+        newTask.createdAt = Date.now();
         newTask.save();
         res.json({ newTask });
     } catch (error) {
@@ -31,7 +32,7 @@ exports.createTask = async (req, res) => {
 
 exports.getTasks = async (req, res) => {
     try {
-        const { project } = req.body;
+        const { project } = req.query; // Se envia como params
         const currentProject = await Project.findById(project);
 
         if (!currentProject)
@@ -40,7 +41,7 @@ exports.getTasks = async (req, res) => {
         if (currentProject.creator.toString() !== req.user.userId)
             return res.status(401).json({ msg: 'No autorizado' });
 
-        const currentTasks = await Task.find({ project });
+        const currentTasks = await Task.find({ project }).sort({ createdAt: -1 });
         res.json({ currentTasks });
     } catch (error) {
         console.log(error)
@@ -62,12 +63,8 @@ exports.updateTask = async (req, res) => {
             return res.status(401).json({ msg: 'No autorizado' });
 
         const newTask = {};
-
-        if (name)
-            newTask.name = name;
-
-        if (status)
-            newTask.status = status;
+        newTask.name = name;
+        newTask.status = status;
 
         currentTask = await Task.findOneAndUpdate({ _id: req.params.id }, newTask, { new: true });
         res.json({ currentTask });
@@ -79,7 +76,7 @@ exports.updateTask = async (req, res) => {
 
 exports.deleteTask = async (req, res) => {
     try {
-        const { project } = req.body;
+        const { project } = req.query;
         let currentTask = await Task.findById(req.params.id);
 
         if (!currentTask)
