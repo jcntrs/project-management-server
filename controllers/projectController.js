@@ -19,7 +19,6 @@ exports.createProject = async (req, res) => {
         newProject.save();
         res.json(newProject);
     } catch (error) {
-        console.log(error)
         res.status(500).send('Hubo un error');
     }
 
@@ -30,7 +29,6 @@ exports.getProjects = async (req, res) => {
         const projectsByUser = await Project.find({ creator: req.user.userId }).sort({ createdAt: -1 });
         res.json({ projectsByUser });
     } catch (error) {
-        console.log(error)
         res.status(500).send('Hubo un error');
     }
 }
@@ -60,7 +58,6 @@ exports.updateProject = async (req, res) => {
         project = await Project.findByIdAndUpdate({ _id: req.params.id }, { $set: newProject }, { new: true });
         res.json({ project });
     } catch (error) {
-        console.log(error)
         res.status(500).send('Error en el servidor');
     }
 
@@ -79,7 +76,6 @@ exports.deleteProject = async (req, res) => {
         await Project.findOneAndRemove({ _id: req.params.id });
         res.json({ msg: 'Proyecto eliminado' });
     } catch (error) {
-        console.log(error)
         res.status(500).send('Error en el servidor');
     }
 }

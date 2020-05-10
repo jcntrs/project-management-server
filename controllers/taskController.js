@@ -24,7 +24,6 @@ exports.createTask = async (req, res) => {
         newTask.save();
         res.json({ newTask });
     } catch (error) {
-        console.log(error);
         res.status(500).send('Hubo un error');;
     }
 
@@ -44,7 +43,6 @@ exports.getTasks = async (req, res) => {
         const currentTasks = await Task.find({ project }).sort({ createdAt: -1 });
         res.json({ currentTasks });
     } catch (error) {
-        console.log(error)
         res.status(500).send('Hubo un error');
     }
 }
@@ -69,7 +67,6 @@ exports.updateTask = async (req, res) => {
         currentTask = await Task.findOneAndUpdate({ _id: req.params.id }, newTask, { new: true });
         res.json({ currentTask });
     } catch (error) {
-        console.log(error)
         res.status(500).send('Hubo un error al actualizar la tarea');
     }
 }
@@ -90,7 +87,6 @@ exports.deleteTask = async (req, res) => {
         await Task.findOneAndRemove({ _id: req.params.id });
         res.json({ msg: 'Tarea eliminada' });
     } catch (error) {
-        console.log(error)
         res.status(500).send('Hubo un error al eliminar la tarea');
     }
 }
