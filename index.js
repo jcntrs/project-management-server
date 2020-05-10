@@ -10,7 +10,7 @@ app.use(cors()); // Habilitar cors
 
 app.use(express.json({ extended: true })); // Habilitar express.json | equivalente a body.parser
 
-const port = process.env.port || 4000; // Puerto de la app
+const port = process.env.PORT || 4000; // Puerto de la app
 
 app.use('/api/users', require('./routes/users'));
 app.use('/api/authentication', require('./routes/authentication'));
